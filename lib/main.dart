@@ -1,33 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:chat_app/views/intersit/intersit.dart';
+import 'core/services/providerRegistrar.dart';
 
-void main(){
-  runApp(new MaterialApp(
-    home: new MyApp(),
-  ));
+void main() {
+  runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget{
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
-  _State createState()=>new _State();
-
-}
-
-class _State extends State<MyApp>{
-  @override
-  Widget build(BuildContext context){
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text ('App name'),
-      ),
-      body: new Container(
-        padding: new EdgeInsets.all(32.0),
-        child: new Center(
-          child: new Column(
-            children: [
-              new Text('Hello World!')
-            ],
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: registerProviders,
+      child: MaterialApp(
+        title: 'TCP|Chat',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          textTheme: GoogleFonts.nunitoTextTheme(
+            Theme.of(context).textTheme,
           ),
+          primarySwatch: Colors.red,
+          primaryColor: Colors.red[800],
         ),
+        home: Intersit(),
       ),
     );
   }
